@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/screen/movie_screen.dart';
+import 'package:movie_app/widget/movie_structure.dart';
 
 class MovieTile extends StatefulWidget {
   final String movieName;
   final String director;
   final String posterImage;
   final int removalIndex;
+  List<MovieStructure> movieList;
 
-  const MovieTile({
+  MovieTile({
     Key? key,
     required this.movieName,
     required this.director,
     required this.posterImage,
     required this.removalIndex,
+    required this.movieList,
   }) : super(key: key);
 
   @override
@@ -79,7 +82,7 @@ class _MovieTileState extends State<MovieTile> {
                 IconButton(
                   onPressed: () {
                     setState(() {
-                      movieList.removeAt(widget.removalIndex);
+                      widget.movieList.removeAt(widget.removalIndex);
                     });
                   },
                   icon: Icon(

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/screen/movie_screen.dart';
 import 'package:movie_app/widget/movie_structure.dart';
 
 class AddMovieScreen extends StatefulWidget {
-  const AddMovieScreen({Key? key}) : super(key: key);
+  //final List<MovieStructure> movieList;
+  const AddMovieScreen({
+    Key? key,
+    //required this.movieList,
+  }) : super(key: key);
 
   @override
   _AddMovieScreenState createState() => _AddMovieScreenState();
@@ -55,16 +58,17 @@ class _AddMovieScreenState extends State<AddMovieScreen> {
               const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    movieList.add(
-                      MovieStructure(
-                        movie: movie,
-                        director: director,
-                        image: image,
-                      ),
-                    );
-                  });
-                  Navigator.pop(context);
+                  // setState(() {
+                  //   widget.movieList.add(
+                  var movieItem = MovieStructure(
+                    movie: movie,
+                    director: director,
+                    image: image,
+                  );
+                  //   );
+                  // });
+
+                  Navigator.pop(context, movieItem);
                 },
                 child: const Padding(
                   padding: EdgeInsets.all(12),

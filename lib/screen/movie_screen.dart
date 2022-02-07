@@ -11,31 +11,31 @@ class MovieScreen extends StatefulWidget {
   _MovieScreenState createState() => _MovieScreenState();
 }
 
-List<MovieStructure> movieList = [
-  MovieStructure(
-    movie: 'Spider-man',
-    director: 'Jon Watts',
-    image: 'images/spiderman.jpg',
-  ),
-  MovieStructure(
-    movie: 'Avatar',
-    director: 'James Cameron',
-    image: 'images/avatar.jpg',
-  ),
-  MovieStructure(
-    movie: 'Hotel- Transylvania',
-    director: 'Jennifer Kluska',
-    image: 'images/hotelTransylvania.jpg',
-  ),
-];
-
 class _MovieScreenState extends State<MovieScreen> {
+  List<MovieStructure> movieList = [
+    MovieStructure(
+      movie: 'Spider-man',
+      director: 'Jon Watts',
+      image: 'images/spiderman.jpg',
+    ),
+    MovieStructure(
+      movie: 'Avatar',
+      director: 'James Cameron',
+      image: 'images/avatar.jpg',
+    ),
+    MovieStructure(
+      movie: 'Hotel- Transylvania',
+      director: 'Jennifer Kluska',
+      image: 'images/hotelTransylvania.jpg',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          var newMovie = await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
@@ -43,6 +43,10 @@ class _MovieScreenState extends State<MovieScreen> {
               },
             ),
           );
+
+          setState(() {
+            movieList.add(newMovie);
+          });
         },
         tooltip: 'Add Movie',
         child: const Icon(Icons.add),
@@ -54,11 +58,11 @@ class _MovieScreenState extends State<MovieScreen> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
             child: MovieTile(
-              posterImage: movieList[index].image,
-              movieName: movieList[index].movie,
-              director: movieList[index].director,
-              removalIndex: index,
-            ),
+                posterImage: movieList[index].image, movieName: movieList[index].movie, director: movieList[index].director, movieList: movieList, removalIndex: index
+                // () => setState(() {
+                //   movieList.removeAt(index);
+                // })
+                ),
           );
         },
       ),
