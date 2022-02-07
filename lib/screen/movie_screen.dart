@@ -58,11 +58,20 @@ class _MovieScreenState extends State<MovieScreen> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
             child: MovieTile(
-                posterImage: movieList[index].image, movieName: movieList[index].movie, director: movieList[index].director, movieList: movieList, removalIndex: index
-                // () => setState(() {
-                //   movieList.removeAt(index);
-                // })
-                ),
+              posterImage: movieList[index].image,
+              movieName: movieList[index].movie,
+              director: movieList[index].director,
+              movieList: movieList,
+              removalIndex: index,
+              onPressed: () {
+                setState(() {
+                  movieList.removeAt(index);
+                });
+              },
+              // () => setState(() {
+              //   movieList.removeAt(index);
+              // })
+            ),
           );
         },
       ),

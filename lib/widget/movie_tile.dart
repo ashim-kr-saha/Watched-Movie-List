@@ -8,6 +8,7 @@ class MovieTile extends StatefulWidget {
   final String posterImage;
   final int removalIndex;
   List<MovieStructure> movieList;
+  final Null Function() onPressed;
 
   MovieTile({
     Key? key,
@@ -16,6 +17,7 @@ class MovieTile extends StatefulWidget {
     required this.posterImage,
     required this.removalIndex,
     required this.movieList,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -55,7 +57,10 @@ class _MovieTileState extends State<MovieTile> {
                 : SizedBox(
                     height: 200,
                     width: 200,
-                    child: Icon(Icons.signal_cellular_connected_no_internet_4_bar, size: 100, color: Colors.red[300]),
+                    child: Icon(
+                        Icons.signal_cellular_connected_no_internet_4_bar,
+                        size: 100,
+                        color: Colors.red[300]),
                   ),
           ),
           const SizedBox(width: 20),
@@ -80,11 +85,7 @@ class _MovieTileState extends State<MovieTile> {
                 ),
                 const SizedBox(height: 40),
                 IconButton(
-                  onPressed: () {
-                    setState(() {
-                      widget.movieList.removeAt(widget.removalIndex);
-                    });
-                  },
+                  onPressed: widget.onPressed,
                   icon: Icon(
                     Icons.delete_forever,
                     color: Colors.redAccent[500],
